@@ -40,6 +40,15 @@ const Feed = () => {
     fetchPosts();
   }, [])
 
+  const filterPrompts = (searchText) => {
+    const regex = new RegExp(searchText, "i")
+    return allPosts.filter((item) => {
+      regex.test(item.creator.username) ||
+      regex.test(item.tag) ||
+      regex.test(item.prompt)
+    })
+  }
+
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
